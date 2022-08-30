@@ -1,13 +1,36 @@
 import React, {useState} from 'react'
 import './styles.css'
 
-const UserForm = ({btnText}) => {
+const UserForm = ({btnText, userList, setUserList}) => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleUser = (e) => {
+    e.preventDefault();
+    /* const newUser = {
+      name,
+      email,
+      password
+    } */
+   /*  setUserList([...userList, newUser]) */
+   const newUser = [...userList]
+
+   newUser.push({
+      name,
+      cpf,
+      password
+   })
+
+    setUserList(newUser)
+    setName('')
+    setCpf('')
+    setPassword('')
+    console.log(userList)
+  }
+
   return (
-    <form /* onSubmit={handleTask} */>
+    <form onSubmit={handleUser}>
     <div className="form-group">
       <label>
         <span>Nome</span>
@@ -21,12 +44,12 @@ const UserForm = ({btnText}) => {
     </div>
     <div className="form-group">
       <label>
-        <span>Email</span>
+        <span>CPF</span>
         <input 
-          type="email" 
-          placeholder='Email do usuário'
-          value={email}
-          onChange={((e) => setEmail(e.target.value))}
+          type="text" 
+          placeholder='Cpf do usuário'
+          value={cpf}
+          onChange={((e) => setCpf(e.target.value))}
         />
       </label>
     </div>

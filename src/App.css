@@ -5,6 +5,10 @@
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 main {
   background: #161a2b;
   max-width: 500px;

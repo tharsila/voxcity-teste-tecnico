@@ -1,0 +1,30 @@
+.userContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+.userInfo p {
+  text-align: left;
+  font-style: italic;
+  font-size: 0.7rem;
+  margin-top: 1rem;
+}
+
+.userActions a {
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.userActions a:first-child {
+  margin-right: 1rem;
+}
+
+.userActions a:hover {
+  color:rgba(48, 16, 255, 1);
+}

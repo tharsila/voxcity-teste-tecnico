@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 
-const UserList = ({userList}) => {
+const UserList = ({userList, deleteUser}) => {
   return (
     <>
       {userList.length > 0 ? (
@@ -13,14 +13,14 @@ const UserList = ({userList}) => {
               <p>Senha: {user.password}</p>
             </div>
             <div className="userActions">
-              <a href="">Editar</a>
-              <a href="">Deletar</a>
+              <span>Editar</span>
+              <span onClick={() => deleteUser(user.id)}>Deletar</span>
             </div>
           </div>
         ))
       ) 
       : (
-        <p>Não há usuarios</p>
+        <h4>Não há usuarios</h4>
       )
       }
     </>

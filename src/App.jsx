@@ -5,6 +5,15 @@ import UserList from './components/UserList'
 
 function App() {
   const [userList, setUserList] = useState([])
+
+  const deleteUser = (id) => {
+    setUserList(
+      userList.filter(user => {
+        return user.id !== id
+      })
+    )
+  } 
+
   return (
     <>
       <main>
@@ -14,7 +23,7 @@ function App() {
         </div>
         <div>
           <h2>Lista de Usuários:</h2>
-          <UserList userList={userList}/>
+          <UserList userList={userList} deleteUser={deleteUser}/>
         </div>
       </main>
     </>

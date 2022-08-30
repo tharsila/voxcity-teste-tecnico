@@ -1,28 +1,41 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './styles.css'
 
-const UserForm = ({btnText, userList, setUserList}) => {
+const UserForm = ({btnText, userList, setUserList, userUpdate, updateUser}) => {
+  const [id, setId] = useState(0);
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    if(userUpdate) {
+      setId(userUpdate.id);
+      setName(userUpdate.name);
+      setCpf(userUpdate.cpf);
+      setPassword(userUpdate.password);
+    }
+  },[userUpdate])
+
   const handleUser = (e) => {
     e.preventDefault();
-   const newUser = [...userList]
-   const id = Math.floor(Math.random() * 1000)
-
-   newUser.push({
-      id,
-      name,
-      cpf,
-      password
-   })
-
-    setUserList(newUser)
-    setName('')
-    setCpf('')
-    setPassword('')
-    console.log(userList)
+    
+    if(updateUser) {
+      updateUser(id, name, cpf, password)
+    }else {
+      const newUser = [...userList]
+      const id = Math.floor(Math.random() * 1000)
+      newUser.push({
+        id,
+        name,
+        cpf,
+        password
+      })
+  
+      setUserList(newUser)
+      setName('')
+      setCpf('')
+      setPassword('')
+    }
   }
 
   return (

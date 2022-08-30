@@ -7,6 +7,7 @@ const UserForm = ({btnText, userList, setUserList, userUpdate, updateUser}) => {
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
+  const regex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
   useEffect(() => {
     if(userUpdate) {
       setId(userUpdate.id);
@@ -19,9 +20,16 @@ const UserForm = ({btnText, userList, setUserList, userUpdate, updateUser}) => {
   const handleUser = (e) => {
     e.preventDefault();
     
+    if(!name || !cpf || !password) return;
+
+    if (regex.test(cpf) || password.length <= 4) return alert("Cpf ou senha inválidos!");
+
+    console.log(cpf);
     if(updateUser) {
+      if(!name || !cpf || !password) return;
       updateUser(id, name, cpf, password)
-    }else {
+
+    }else{
       const newUser = [...userList]
       const id = Math.floor(Math.random() * 1000)
       newUser.push({
@@ -37,6 +45,8 @@ const UserForm = ({btnText, userList, setUserList, userUpdate, updateUser}) => {
       setPassword('')
     }
   }
+
+
 
   return (
     <form onSubmit={handleUser}>
@@ -55,10 +65,10 @@ const UserForm = ({btnText, userList, setUserList, userUpdate, updateUser}) => {
       <label>
         <span>CPF</span>
         <input 
-          type="text" 
+          type="number" 
           placeholder='Cpf do usuário'
           value={cpf}
-          onChange={((e) => setCpf(e.target.value))}
+          onChange={((e) => setCpf(e.target.value)) }
         />
       </label>
     </div>

@@ -6,7 +6,7 @@ const UserList = ({userList, deleteUser, editUser}) => {
     <>
       {userList.length > 0 ? (
         userList.map((user) => (
-          <div className="userContainer">
+          <div key={user.id} className="userContainer">
             <div className="userInfo">
               <h3>{user.name}</h3>
               <p>Cpf: {user.cpf}</p>

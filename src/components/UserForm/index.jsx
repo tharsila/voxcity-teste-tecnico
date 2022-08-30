@@ -8,15 +8,11 @@ const UserForm = ({btnText, userList, setUserList}) => {
 
   const handleUser = (e) => {
     e.preventDefault();
-    /* const newUser = {
-      name,
-      email,
-      password
-    } */
-   /*  setUserList([...userList, newUser]) */
    const newUser = [...userList]
+   const id = Math.floor(Math.random() * 1000)
 
    newUser.push({
+      id,
       name,
       cpf,
       password
